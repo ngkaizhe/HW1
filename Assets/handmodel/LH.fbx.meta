@@ -13,7 +13,12 @@ ModelImporter:
     7400002: run
     7400004: idle
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hand
+    second: {fileID: 2100000, guid: 5d6588ad958e7e74888ae304216bf5a4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
