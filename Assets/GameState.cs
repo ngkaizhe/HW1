@@ -14,6 +14,7 @@ public class GameState : MonoBehaviour
 
     private State _currentState;
     public FlameLightedUpDetector[] flameLightUpList;
+    public Animator exitDoorAnimator;
 
     private void Start()
     {
@@ -36,8 +37,14 @@ public class GameState : MonoBehaviour
         // open door effect
         if (allLightUp)
         {
-
+            // delay for 1 second
+            Invoke("OpenExitDoor", 1.0f);
         }
+    }
+
+    private void OpenExitDoor()
+    {
+        exitDoorAnimator.SetBool("OpenDoor", true);
     }
 
     public State currentState
