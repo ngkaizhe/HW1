@@ -5,9 +5,11 @@ using UnityEngine;
 public class FlameLightedUpDetector : MonoBehaviour
 {
     public GameObject redFlame;
+    public bool flameLightUp;
     // Start is called before the first frame update
     void Start()
     {
+        flameLightUp = false;
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class FlameLightedUpDetector : MonoBehaviour
             {
                 // Debug.Log("Player stay in and pressed E");
                 redFlame.GetComponent<Animator>().SetBool("FlameStart", true);
+                flameLightUp = true;
             }
         }
     }
