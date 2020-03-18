@@ -12,12 +12,14 @@ public class GameState : MonoBehaviour
         End,
     };
 
+    public static GameState instance;
     private State _currentState;
     public FlameLightedUpDetector[] flameLightUpList;
     public Animator exitDoorAnimator;
 
     private void Start()
     {
+        instance = this;
         _currentState = State.Play;
     }
 

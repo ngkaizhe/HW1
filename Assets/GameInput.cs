@@ -13,7 +13,12 @@ public class GameInput : MonoBehaviour
 
     public static bool GetKeyDown(KeyCode code)
     {
-        if(freezeInput) // Game wasnt start yet
+        // pause key is the special key
+        if (code == KeyCode.P && Input.GetKeyDown(code))
+        {
+            return true;
+        }
+        else if(freezeInput) // Game wasnt start yet
         {
             return false;
         }
@@ -25,6 +30,35 @@ public class GameInput : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public static bool GetButtonDown(string code)
+    {
+        if (freezeInput) // Game wasnt start yet
+        {
+            return false;
+        }
+        else if (Input.GetButtonDown(code))
+        {
+            // Debug.Log("GameInput get key down called!");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static float GetAxis(string code)
+    {
+        if (freezeInput) // Game wasnt start yet
+        {
+            return 0;
+        }
+        else
+        {
+            return Input.GetAxis(code);
         }
     }
 
