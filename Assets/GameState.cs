@@ -59,6 +59,7 @@ public class GameState : MonoBehaviour
             {
                 GameInput.freezeInput = false;
                 Time.timeScale = 1;
+                TimerPanelController.instance.playTimer();
             }
             // if State is pause, freeze the input and pause the game(timeScale == 0)
             else if (value == State.Pause)
@@ -67,10 +68,11 @@ public class GameState : MonoBehaviour
                 Time.timeScale = 0;
             }
             // if State is animation time, freeze the input only
-            else if(value == State.Animation || value == State.End)
+            else if(value == State.Animation)
             {
                 GameInput.freezeInput = true;
                 Time.timeScale = 1;
+                TimerPanelController.instance.stopTimer();
             }
             // if State is end, freeze the input and call end game animation
             else if (value == State.End)
@@ -79,6 +81,7 @@ public class GameState : MonoBehaviour
                 Time.timeScale = 1;
 
                 // call the end game animation
+                TimerPanelController.instance.stopTimer();
             }
 
             _currentState = value;
