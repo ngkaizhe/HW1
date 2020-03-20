@@ -8,6 +8,10 @@ public class FlameLightedUpDetector : MonoBehaviour
     public bool flameLightUp;
     
     public Animator RH;
+    public GameObject LightUpUIParticle;
+    public Canvas LUPCanvas;
+    public GameObject lampShower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +21,6 @@ public class FlameLightedUpDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,6 +36,8 @@ public class FlameLightedUpDetector : MonoBehaviour
                 // Debug.Log("Player stay in and pressed E");
                 redFlame.GetComponent<Animator>().SetBool("FlameStart", true);
                 flameLightUp = true;
+
+                CreateUIParticleEffect();
             }
             else if (GameInput.GetKeyUp(KeyCode.E))
             {
@@ -47,5 +52,15 @@ public class FlameLightedUpDetector : MonoBehaviour
         {
             HintPanelCotroller.instance.CreateHint("Please pressed Key (\"E\") ... to light up the candle!!!");
         }
+    }
+
+    private void CreateUIParticleEffect()
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(redFlame.transform.position);
+        GameObject LUParticleObj = Instantiate(LightUpUIParticle, screenPos,
+            Quaternion.Euler(Vector3.zero), LUPCanvas.gameObject.transform);
+
+        UIParticleEffectController LUPController = LUParticleObj.GetComponent<UIParticleEffectController>();
+        LUPController.lampShower = lampShower;
     }
 }
