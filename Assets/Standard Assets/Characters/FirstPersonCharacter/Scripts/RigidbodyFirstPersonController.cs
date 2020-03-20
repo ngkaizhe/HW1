@@ -11,6 +11,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class MovementSettings
         {
+            public Animator LH;
+            public Animator RH;
+
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
@@ -26,8 +29,21 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             public void UpdateDesiredTargetSpeed(Vector2 input)
             {
-	            if (input == Vector2.zero) return;
-				if (input.x > 0 || input.x < 0)
+                // idle walk run settings,
+                // idle = 0
+                // walk = 1
+                // run = 2
+
+	            if (input == Vector2.zero)
+                {
+                    LH.SetInteger("IdleWalkRun", 0);
+                    RH.SetInteger("IdleWalkRun", 0);
+                    return;
+                }
+
+                LH.SetInteger("IdleWalkRun", 1);
+                RH.SetInteger("IdleWalkRun", 1);
+                if (input.x > 0 || input.x < 0)
 				{
 					//strafe
 					CurrentTargetSpeed = StrafeSpeed;
@@ -42,17 +58,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					//forwards
 					//handled last as if strafing and moving forward at the same time forwards speed should take precedence
 					CurrentTargetSpeed = ForwardSpeed;
-				}
+                }
 #if !MOBILE_INPUT
 	            if (Input.GetKey(RunKey))
 	            {
 		            CurrentTargetSpeed *= RunMultiplier;
 		            m_Running = true;
-	            }
+
+                
+                }
 	            else
 	            {
 		            m_Running = false;
-	            }
+                }
 #endif
             }
 

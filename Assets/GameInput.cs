@@ -32,6 +32,27 @@ public class GameInput : MonoBehaviour
             return false;
         }
     }
+    public static bool GetKeyUp(KeyCode code)
+    {
+        // pause key is the special key
+        if (code == KeyCode.P && Input.GetKeyUp(code))
+        {
+            return true;
+        }
+        else if(freezeInput) // Game wasnt start yet
+        {
+            return false;
+        }
+        else if(Input.GetKeyUp(code))
+        {
+            // Debug.Log("GameInput get key down called!");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public static bool GetButtonDown(string code)
     {

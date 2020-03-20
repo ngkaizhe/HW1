@@ -6,6 +6,8 @@ public class FlameLightedUpDetector : MonoBehaviour
 {
     public GameObject redFlame;
     public bool flameLightUp;
+    
+    public Animator RH;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +24,28 @@ public class FlameLightedUpDetector : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            // Debug.Log("Player stay in the box collider!");
+            // get player's animator
             if (GameInput.GetKeyDown(KeyCode.E))
             {
+                // set LH and RH's animation
+                RH.SetBool("Fire", true);
+
                 // Debug.Log("Player stay in and pressed E");
                 redFlame.GetComponent<Animator>().SetBool("FlameStart", true);
                 flameLightUp = true;
             }
+            else if (GameInput.GetKeyUp(KeyCode.E))
+            {
+                RH.SetBool("Fire", false);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            HintPanelCotroller.instance.CreateHint("Please pressed Key (\"E\") ... to light up the candle!!!");
         }
     }
 }

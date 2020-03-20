@@ -5,32 +5,27 @@ using TMPro;
 
 public class HintPanelCotroller : MonoBehaviour
 {
-    enum HintState
-    {
-        ShowingHint,
-        PressedAnyKeyToSkip,
-        ClosedHint,
-    };
     public GameObject hintBG;
     public TextMeshProUGUI hintContext;
-    public GameObject pressAnyKey;
+    public static HintPanelCotroller instance;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            hintBG.SetActive(true);
-            hintContext.text = "";
-            StartCoroutine(CreateHintContext("Please pressed Key (\"E\") ... to light up the candle!!!"));
-        }
-         
+    }
+
+    public void CreateHint(string text)
+    {
+        hintBG.SetActive(true);
+        hintContext.text = "";
+        // StartCoroutine(CreateHintContext("Please pressed Key (\"E\") ... to light up the candle!!!"));
+        StartCoroutine(CreateHintContext(text));
     }
 
     private IEnumerator CreateHintContext(string text)
@@ -40,7 +35,8 @@ public class HintPanelCotroller : MonoBehaviour
             hintContext.text += letter;
             yield return null;
         }
-        pressAnyKey.SetActive(true);
+        yield return new WaitForSeconds(1);
+        hintBG.SetActive(false);
     }
 
 }
