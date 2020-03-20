@@ -15,12 +15,12 @@ TagManager:
   - 
   - PostProcessing
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Candle
+  - Exit
+  - Floor
+  - Wall
+  - Furniture
   - 
   - 
   - 
