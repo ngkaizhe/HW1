@@ -41,6 +41,8 @@ public class GameState : MonoBehaviour
         {
             // delay for 1 second
             Invoke("OpenExitDoor", 1.0f);
+
+            HintPanelCotroller.instance.CreateHint("The door has opened, I think I can get out now!!");
         }
     }
 

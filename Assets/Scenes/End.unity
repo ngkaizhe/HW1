@@ -2053,8 +2053,8 @@ Transform:
   m_LocalPosition: {x: -26.2, y: 0, z: -49.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1289532534}
   - {fileID: 1033414736}
+  - {fileID: 1289532534}
   - {fileID: 1894309773}
   - {fileID: 1002400810}
   - {fileID: 1393552290}
@@ -9934,7 +9934,7 @@ Transform:
   - {fileID: 1156389373}
   - {fileID: 92717868}
   m_Father: {fileID: 236805038}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1045330884
 PrefabInstance:
@@ -20976,7 +20976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2126189097
 BoxCollider:
   m_ObjectHideFlags: 0

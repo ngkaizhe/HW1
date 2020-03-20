@@ -8,7 +8,7 @@ public class TimerPanelController : MonoBehaviour
     public static TimerPanelController instance;
     public Text Timer;
 
-    private float CurrentTimer;
+    public float CurrentTimer;
     private bool isTimerStopped;
     // Start is called before the first frame update
     void Start()

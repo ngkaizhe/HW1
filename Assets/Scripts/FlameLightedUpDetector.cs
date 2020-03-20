@@ -25,7 +25,7 @@ public class FlameLightedUpDetector : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !flameLightUp)
         {
             // get player's animator
             if (GameInput.GetKeyDown(KeyCode.E))
@@ -38,17 +38,19 @@ public class FlameLightedUpDetector : MonoBehaviour
                 flameLightUp = true;
 
                 CreateUIParticleEffect();
-            }
-            else if (GameInput.GetKeyUp(KeyCode.E))
-            {
-                RH.SetBool("Fire", false);
+                Invoke("setFireAnimationOff", 0.1f);
             }
         }
     }
 
+    private void setFireAnimationOff()
+    {
+        RH.SetBool("Fire", false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !flameLightUp)
         {
             HintPanelCotroller.instance.CreateHint("Please pressed Key (\"E\") ... to light up the candle!!!");
         }
