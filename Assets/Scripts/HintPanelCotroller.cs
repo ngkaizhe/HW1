@@ -22,6 +22,7 @@ public class HintPanelCotroller : MonoBehaviour
 
     public void CreateHint(string text)
     {
+        StopAllCoroutines();
         hintBG.SetActive(true);
         hintContext.text = "";
         // StartCoroutine(CreateHintContext("Please pressed Key (\"E\") ... to light up the candle!!!"));

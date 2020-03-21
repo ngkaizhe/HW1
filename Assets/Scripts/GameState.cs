@@ -16,16 +16,20 @@ public class GameState : MonoBehaviour
     private State _currentState;
     public FlameLightedUpDetector[] flameLightUpList;
     public Animator exitDoorAnimator;
+    private bool doorHasOpened;
 
     private void Start()
     {
         instance = this;
         _currentState = State.Play;
+        doorHasOpened = false;
     }
 
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
+        if(doorHasOpened) return;
+        
         bool allLightUp = true;
         for(int i=0; i<flameLightUpList.Length; i++)
         {
@@ -37,8 +41,9 @@ public class GameState : MonoBehaviour
         }
 
         // open door effect
-        if (allLightUp)
+        if (allLightUp && !doorHasOpened)
         {
+            doorHasOpened = true;
             // delay for 1 second
             Invoke("OpenExitDoor", 1.0f);
 

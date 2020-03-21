@@ -28,7 +28,6 @@ public class UIParticleEffectController : MonoBehaviour
             float dist = Mathf.Sqrt(Mathf.Pow(gameObject.transform.position.x - lampShowerScreenPos.x, 2) +
                 Mathf.Pow(gameObject.transform.position.y - lampShowerScreenPos.y, 2));
             if (dist < 10f) break;
-            Debug.Log("Distance is -> " + dist);
            
 
             Vector3 dir = Vector3.Normalize(lampShowerScreenPos - gameObject.transform.position);
