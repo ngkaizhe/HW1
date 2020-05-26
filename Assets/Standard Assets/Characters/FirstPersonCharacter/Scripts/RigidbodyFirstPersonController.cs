@@ -11,8 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class MovementSettings
         {
-            public Animator LH;
-            public Animator RH;
+            public Animator _animator;
 
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
@@ -36,13 +35,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 	            if (input == Vector2.zero)
                 {
-                    LH.SetInteger("IdleWalkRun", 0);
-                    RH.SetInteger("IdleWalkRun", 0);
+                    _animator.SetBool("Walk", false);
                     return;
                 }
 
-                LH.SetInteger("IdleWalkRun", 1);
-                RH.SetInteger("IdleWalkRun", 1);
+                _animator.SetBool("Walk", true);
                 if (input.x > 0 || input.x < 0)
 				{
 					//strafe

@@ -547,7 +547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redFlame: {fileID: 1291863660078490}
   flameLightUp: 0
-  RH: {fileID: 0}
   LightUpUIParticle: {fileID: 1742891399094924, guid: dc18de6bec49a79408860f55307afa04,
     type: 3}
   LUPCanvas: {fileID: 0}

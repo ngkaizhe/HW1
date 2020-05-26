@@ -6,8 +6,7 @@ public class FlameLightedUpDetector : MonoBehaviour
 {
     public GameObject redFlame;
     public bool flameLightUp;
-    
-    public Animator RH;
+
     public GameObject LightUpUIParticle;
     public Canvas LUPCanvas;
     public GameObject lampShower;
@@ -18,41 +17,20 @@ public class FlameLightedUpDetector : MonoBehaviour
         flameLightUp = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag == "Player" && !flameLightUp)
-        {
-            // get player's animator
-            if (GameInput.GetKeyDown(KeyCode.E))
-            {
-                // set LH and RH's animation
-                RH.SetBool("Fire", true);
-
-                // Debug.Log("Player stay in and pressed E");
-                redFlame.GetComponent<Animator>().SetBool("FlameStart", true);
-                flameLightUp = true;
-
-                CreateUIParticleEffect();
-                Invoke("setFireAnimationOff", 0.1f);
-            }
-        }
-    }
-
-    private void setFireAnimationOff()
-    {
-        RH.SetBool("Fire", false);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && !flameLightUp)
         {
-            HintPanelCotroller.instance.CreateHint("Please pressed Key (\"E\") ... to light up the candle!!!");
+            HintPanelCotroller.instance.CreateHint("Light Candle: Player Detected, auto turn on the light!");
+
+            // get player's animator
+            // auto turn on the fire light
+            redFlame.GetComponent<Animator>().SetBool("FlameStart", true);
+            flameLightUp = true;
+
+            // create the ui particle effect
+            CreateUIParticleEffect();
         }
     }
 
@@ -63,6 +41,7 @@ public class FlameLightedUpDetector : MonoBehaviour
             Quaternion.Euler(Vector3.zero), LUPCanvas.gameObject.transform);
 
         UIParticleEffectController LUPController = LUParticleObj.GetComponent<UIParticleEffectController>();
+        // set lamp shower UI 
         LUPController.lampShower = lampShower;
     }
 }
