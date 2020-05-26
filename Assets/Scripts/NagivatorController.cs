@@ -27,7 +27,6 @@ public class NagivatorController : MonoBehaviour
                 // self destroy
                 Destroy(gameObject);
                 target = null;
-                Debug.Log("Target reached");
             }
         }
     }
