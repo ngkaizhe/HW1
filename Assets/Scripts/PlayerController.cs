@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator _animator;
 
+    public GameObject navPrefab;
+
     private void Start()
     {
         // lock cursor
@@ -42,6 +44,21 @@ public class PlayerController : MonoBehaviour
 
         Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            bool allLightUp = true;
+            for (int i = 0; i < GameState.instance.flameLightUpList.Length; i++)
+            {
+                if (GameState.instance.flameLightUpList[i].flameLightUp == false)
+                {
+                    allLightUp = false;
+                    break;
+                }
+            }
+            if(!allLightUp)
+                CreateNavMesh();
+        }
     }
 
     private void FixedUpdate()
@@ -71,5 +88,11 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Walk", true);
         else
             _animator.SetBool("Walk", false);
+    }
+
+    void CreateNavMesh()
+    {
+        GameObject navGO = Instantiate(navPrefab, transform.position + (transform.forward * 2), Quaternion.identity);
+        navGO.GetComponent<NagivatorController>().StartNavigation();
     }
 }

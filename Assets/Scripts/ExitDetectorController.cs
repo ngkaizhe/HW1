@@ -5,22 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class ExitDetectorController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            // when player came out, we will change to next scene
             ApplicationModel.totalUsedTime = TimerPanelController.instance.CurrentTimer;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
